@@ -3,6 +3,7 @@ import { startStandaloneServer } from '@apollo/server/standalone';
 
 const typeDefs = `#graphql
   type Movie {
+    id: Int
     title: String
     year: Int
   }
