@@ -1,38 +1,42 @@
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
+import { PrismaClient } from '@prisma/client';
+
+const client = new PrismaClient();
 
 const typeDefs = `#graphql
   type Movie {
-    id: Int
-    title: String
-    year: Int
+    id: Int!
+    title: String!
+    year: Int!
+    genre: String
+    createdAt: String!
+    updatedAt: String!
   }
 
 
   type Query {
     movies: [Movie]
-    movie: Movie
+    movie(id: Int!): Movie
   }
 
   type Mutation {
-    createMovie(title: String!): Boolean
-    deleteMovie(title: String!): Boolean
+    createMovie(title: String!, year: Int!, genre: String): Movie
+    updateMovie(id: Int!, title: String, year: Int, genre: String): Movie
+    deleteMovie(id: Int!): Movie
   }
 `;
 
 const resolvers = {
   Query: {
-    movies: () => [],
-    movie: () => ({ title: 'Hello', year: 2023 }),
+    movies: async () => await client.movie.findMany(),
+    movie: async (_, { id }) => await client.movie.findUnique({ where: { id } }),
   },
   Mutation: {
-    createMovie: (_, args) => {
-      console.log(args);
-      return true;
-    },
-    deleteMovie: (_, args) => {
-      return true;
-    },
+    createMovie: async (_, { title, year, genre }) => await client.movie.create({ data: { title, year, genre } }),
+    updateMovie: async (_, { id, title, year, genre }) =>
+      await client.movie.update({ where: { id }, data: { title, year, genre } }),
+    deleteMovie: async (_, { id }) => await client.movie.delete({ where: { id } }),
   },
 };
 

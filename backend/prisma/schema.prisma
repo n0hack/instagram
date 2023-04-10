@@ -11,6 +11,7 @@ datasource db {
 }
 
 // ?가 붙으면 optional (not required)
+// Prisma 스키마는 기본적으로 required / GraphQL은 기본적으로 nullable
 model Movie {
   id        Int      @id @default(autoincrement())
   title     String

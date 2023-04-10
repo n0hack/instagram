@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon --exec node server.js"
+    "dev": "nodemon --exec node server.js",
+    "migrate": "prisma migrate dev",
+    "studio": "prisma studio"
   },
   "dependencies": {
     "@apollo/server": "^4.6.0",
