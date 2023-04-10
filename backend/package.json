@@ -4,6 +4,14 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": ""
-  }
+    "dev": "nodemon --exec node server.js"
+  },
+  "dependencies": {
+    "@apollo/server": "^4.6.0",
+    "graphql": "^16.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "type": "module"
 }
