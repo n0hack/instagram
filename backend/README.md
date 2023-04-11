@@ -4,8 +4,15 @@
 
 - [x] Create Account
 - [x] See Profile
-- [ ] Login
+- [x] Login
 - [ ] Edit Profile
 - [ ] Follow User
 - [ ] Unfollow User
 - [ ] Change Avatar (Image Upload)
+
+## Photos
+
+- [ ] See Photo
+- [ ] Upload Photo
+- [ ] Edit Photo
+- [ ] Like / Unlike Photo

@@ -8,12 +8,4 @@ export default `#graphql
     createdAt: String!
     updatedAt: String!
   }
-
-  type Query {
-    seeProfile(username: String!): User
-  }
-
-  type Mutation {
-    createAccount(firstName: String!, lastName: String, username: String!, email: String!, password: String!): User
-  }
 `;
