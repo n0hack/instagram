@@ -3,14 +3,14 @@ import client from '../../client';
 
 export default {
   Mutation: {
-    editProfile: async (_, { firstName, lastName, username, email, password }) => {
+    editProfile: async (_, { firstName, lastName, username, email, password }, { loggedInUser }) => {
       let hashedPassword;
       if (password) {
         hashedPassword = await bcrypt.hash(password, 10);
       }
 
       const updatedUser = await client.user.update({
-        where: { id: 2 },
+        where: { id: loggedInUser.id },
         data: { firstName, lastName, username, email, ...(hashedPassword && { password: hashedPassword }) },
       });
 
