@@ -10,7 +10,7 @@ export default `#graphql
   }
 
   type Query {
-    seeProfile(username: String): User
+    seeProfile(username: String!): User
   }
 
   type Mutation {
