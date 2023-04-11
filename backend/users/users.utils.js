@@ -1,3 +1,4 @@
+import { GraphQLError } from 'graphql';
 import jwt from 'jsonwebtoken';
 import client from '../client';
 
@@ -23,4 +24,16 @@ export const getUser = async (token) => {
   } catch {
     return null;
   }
+};
+
+// 고차 함수를 이용해 resolver를 감싸는 함수
+export const protectedResolver = (resolver) => (root, args, context, info) => {
+  if (!context.loggedInUser) {
+    return {
+      ok: false,
+      error: '로그인이 필요한 액션입니다.',
+    };
+  }
+
+  return resolver(root, args, context, info);
 };

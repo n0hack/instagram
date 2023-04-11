@@ -3,7 +3,7 @@ require('dotenv').config();
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
 import schema from './schema';
-import { getUser } from './users/users.utils';
+import { getUser, protectResolver } from './users/users.utils';
 
 const server = new ApolloServer({ schema });
 (async () => {
@@ -14,6 +14,7 @@ const server = new ApolloServer({ schema });
 
       return {
         loggedInUser,
+        protectResolver,
       };
     },
   });
