@@ -10,6 +10,7 @@ export default `#graphql
       lastName: String
       username: String
       email: String
+      bio: String
       password: String
     ): EditProfileResult!
   }

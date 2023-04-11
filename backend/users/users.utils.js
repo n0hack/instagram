@@ -1,6 +1,5 @@
-import { GraphQLError } from 'graphql';
 import jwt from 'jsonwebtoken';
-import client from '../client';
+import client from '../client.js';
 
 /**
  * 토큰으로 유저를 찾는 유틸 함수

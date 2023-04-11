@@ -1,11 +1,11 @@
 import bcrypt from 'bcrypt';
-import client from '../../client';
-import { protectedResolver } from '../users.utils';
+import client from '../../client.js';
+import { protectedResolver } from '../users.utils.js';
 
 export default {
   Mutation: {
     editProfile: protectedResolver(
-      async (_, { firstName, lastName, username, email, password }, { loggedInUser, protectResolver }) => {
+      async (_, { firstName, lastName, username, email, password, bio }, { loggedInUser }) => {
         let hashedPassword;
         if (password) {
           hashedPassword = await bcrypt.hash(password, 10);
@@ -13,7 +13,7 @@ export default {
 
         const updatedUser = await client.user.update({
           where: { id: loggedInUser.id },
-          data: { firstName, lastName, username, email, ...(hashedPassword && { password: hashedPassword }) },
+          data: { firstName, lastName, username, email, bio, ...(hashedPassword && { password: hashedPassword }) },
         });
 
         if (updatedUser.id) {
