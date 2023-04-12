@@ -1,5 +1,3 @@
-import GraphQLUpload from 'graphql-upload/GraphQLUpload.mjs';
-
 export default `#graphql
   scalar Upload
 
